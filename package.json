@@ -1,0 +1,53 @@
+{
+  "name": "ng-sqlite-cordotron-starter",
+  "version": "0.0.1",
+  "main": "main-electron.js",
+  "scripts": {
+    "ng": "ng",
+    "start": "npm run serve:browser",
+    "ng:serve": "ng serve",
+    "serve:browser": "ng serve -o",
+    "serve:electron": "npm-run-all -p ng:serve wait:electron",
+    "wait:electron": "wait-on http-get://localhost:4200/ && tsc main-electron.ts && electron ./ --serve",
+    "dist:electron": "tsc main-electron.ts && electron ./",
+    "prebuild:electron": "tsc main-electron.ts && ng build -c production",
+    "build": "ng build",
+    "build:windows": "npm run prebuild:electron && electron-builder build --windows",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "asar:extract": "npx asar extract"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^14.2.0",
+    "@angular/common": "^14.2.0",
+    "@angular/compiler": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "@angular/forms": "^14.2.0",
+    "@angular/platform-browser": "^14.2.0",
+    "@angular/platform-browser-dynamic": "^14.2.0",
+    "@angular/router": "^14.2.0",
+    "@electron/remote": "^2.0.9",
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.2.10",
+    "@angular/cli": "~14.2.10",
+    "@angular/compiler-cli": "^14.2.0",
+    "@types/jasmine": "~4.0.0",
+    "electron": "^22.0.0",
+    "electron-builder": "^23.6.0",
+    "electron-reload": "^2.0.0-alpha.1",
+    "jasmine-core": "~4.3.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "~4.7.2",
+    "wait-on": "^7.0.1"
+  }
+}

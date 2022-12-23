@@ -1,0 +1,42 @@
+{
+    "productName": "ng-sqlite-cordotron-starter",
+    "directories": {
+      "output": "prod"
+    },
+    "files": [
+      "**/*",
+      "!*.ts",
+      "!*.code-workspace",
+      "!LICENSE.md",
+      "!package.json",
+      "!package-lock.json",
+      "!src/",
+      "!e2e/",
+      "!hooks/",
+      "!.angular-cli.json",
+      "!_config.yml",
+      "!karma.conf.js",
+      "!tsconfig.app.json",
+      "!tsconfig.json",
+      "!tsconfig.spec.json",
+      "!tslint.json"
+    ],
+    "win": {
+      "icon": "dist/ng-sqlite-cordotron-starter/favicon.ico",
+      "target": [
+        "portable"
+      ]
+    },
+    "mac": {
+      "icon": "dist",
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "icon": "dist",
+      "target": [
+        "AppImage"
+      ]
+    }
+  }
