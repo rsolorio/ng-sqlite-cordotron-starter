@@ -8,13 +8,18 @@ const destinationFolder = 'www';
 
 (async () => {
   try {
-    await main();
+    main();
   } catch (err) {
     console.log(err);
   }
 })();
 
-async function main(): Promise<void> {
+function main(): void {
+  moveFiles();
+  updateIndex();
+}
+
+function moveFiles(): void {
   // Delete existing www folder
   if (fs.existsSync(destinationFolder)) {
     fs.rmSync(destinationFolder, { recursive: true, force: true });
@@ -26,4 +31,13 @@ async function main(): Promise<void> {
   if (fs.existsSync(sourceFolder)) {
     fs.cpSync(sourceFolder, destinationFolder, { recursive: true });
   }
+}
+
+function updateIndex(): void {
+  const indexPath = destinationFolder + '\\index.html';
+  const indexContent = fs.readFileSync(indexPath, { encoding: 'utf8' });
+  const scriptTag = '<script src="cordova.js"></script>';
+  const placeholder = `<!-- ${scriptTag} -->`;
+  const newIndexContent = indexContent.replace(placeholder, scriptTag);
+  fs.writeFileSync(indexPath, newIndexContent, { flag: 'w' });
 }
