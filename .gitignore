@@ -3,6 +3,8 @@
 # Compiled output
 /dist
 /prod
+/platforms
+/www
 /tmp
 /out-tsc
 /bazel-out

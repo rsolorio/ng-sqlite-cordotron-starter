@@ -8,5 +8,6 @@ if (environment.production) {
   enableProdMode();
 }
 
+console.log('Bootstrapping Angular in main.ts');
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

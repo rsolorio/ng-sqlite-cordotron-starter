@@ -6,6 +6,8 @@ import * as path from 'path';
 let mainWindow: BrowserWindow;
 const appName = 'ng-sqlite-cordotron-starter';
 
+console.log('Bootstrapping Electron in main-electron.ts');
+
 // Detect serve mode (Development mode)
 const args = process.argv.slice(1);
 const serve: boolean = args.some(val => val === '--serve');
