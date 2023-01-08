@@ -19,8 +19,27 @@ Boilerplate project that supports an Angular/Sqlite application running in Elect
 - Cordova 11
 - Gradle 7.6
 
-## Environment Variables
-You need to setup these variables before running cordova. You need to restart VS Code in order to get the new values.
+## Global Dependencies
+- @angular/cli@14
+- cordova@11
+
+## Dev Dependencies
+- electron-reload
+  - Used in the main electron script to reload electron and react to changes.
+- wait-on
+  - Used in the script that serves electron from localhost; it waits for the default url to be loaded before preparing the main electron script.
+- npm-run-all
+  - To run scripts in parallel. In this case used to run the ng serve and the electron preparation at the same time.
+- electron-builder
+  - Used to generate the build for windows or mac.
+- @angular-builders/custom-webpack
+  - Allows to setup extra web pack configurations for Electron (to resolve node imports).
+  - In the `angular.json` file, under the `architect` section, I added a new build section called `build-electron` which uses the custom webpack configuration. This section is also referenced in the `serve/configurations/electron` section.
+  - A custom build target can be executed as follows: `ng run [project name]:[target name]:[configuration name]`
+    - Example: `ng run ng-sqlite-cordotron-starter:build-electron:electron`
+
+## Environment Variables (Cordova)
+You need to setup these variables before running/building for cordova. You need to restart VS Code in order to get the new values.
 - ANDROID_SDK_ROOT
   - C:\Users\rsolorio\AppData\Local\Android\Sdk
 - JAVA_HOME
@@ -31,10 +50,14 @@ You need to setup these variables before running cordova. You need to restart VS
 ## NPM package scripts
 - npm run serve:browser
   - Serves and runs the application in a browser window
+  - Uses the default `development` build configuration
 - npm run serve:electron
   - Serves and runs the application in electron, supporting auto refresh when files change
+  - Uses a custom webpack configuration
 - npm run dist:electron
-  - Runs the application in electron, retrieving the content from the dist folder
+  - Builds the app for electron, placing the file in the dist folder, a runs the application, retrieving the content from the dist folder
+  - Uses a custom webpack configuration
+  - Does not support auto refresh
 - npm run build:windows
   - Builds the application for electron supporting Windows. Output folder: prod
 - npm run build:android
@@ -51,20 +74,6 @@ You need to setup these variables before running cordova. You need to restart VS
 - cordova platform rm android
   - Un does the add command
   - Fixes an issue that starts happening after updating the config xml file: "No Java files found which extend CordovaActivity".
-
-## Global Dependencies
-- @angular/cli@14
-- cordova@11
-
-## Dev Dependencies
-- electron-reload
-  - Used in the main electron script to reload electron and react to changes.
-- wait-on
-  - Used in the script that serves electron from localhost; it waits for the default url to be loaded before preparing the main electron script.
-- npm-run-all
-  - To run scripts in parallel. In this case used to run the ng serve and the electron preparation at the same time.
-- electron-builder
-  - Used to generate the build for windows or mac.
 
 ## Cordova Config File
 Before running a cordova build update the config.xml to meet your needs. Make sure to update the required fields mentioned [here](https://cordova.apache.org/docs/en/11.x/config_ref/).

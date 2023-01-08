@@ -22,7 +22,6 @@ function createWindow(): void {
       contextIsolation: false,
       webSecurity: false
     },
-    icon: path.join(__dirname, `/dist/${appName}/favicon.ico`),
   });
   mainWindow.maximize();
   remoteMain.enable(mainWindow.webContents);
@@ -48,7 +47,18 @@ function createWindow(): void {
   }
 
   //mainWindow.setMenuBarVisibility(false);
-  mainWindow.setIcon(path.join(__dirname, `/dist/${appName}/favicon.ico`));
+
+  const iconPath = path.join(__dirname, `/dist/${appName}/favicon.ico`);
+  //const iconPath = path.join(__dirname + '\\src\\favicon.ico');
+  //const iconPath = 'http://localhost:4200/favicon.ico';
+  try {
+    mainWindow.setIcon(iconPath);
+  }
+  catch (err) {
+    console.log('Error setting icon at: ' + iconPath);
+    console.log(err);
+  }
+  
 
   mainWindow.on('closed', () => {
     mainWindow.destroy();

@@ -61,18 +61,94 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "cordova": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.cordova.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "build-electron": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "./webpack-electron.config.js"
+            },
+            "outputPath": "dist/ng-sqlite-cordotron-starter",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "electron": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.electron.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "ng-sqlite-cordotron-starter:build:production"
             },
             "development": {
               "browserTarget": "ng-sqlite-cordotron-starter:build:development"
+            },
+            "cordova": {
+              "browserTarget": "ng-sqlite-cordotron-starter:build:cordova"
+            },
+            "electron": {
+              "browserTarget": "ng-sqlite-cordotron-starter:build-electron:electron"
             }
           },
           "defaultConfiguration": "development"

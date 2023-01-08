@@ -5,19 +5,19 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run serve:browser",
-    "ng:serve": "ng serve",
+    "ng:serve:electron": "ng serve -c electron",
     "serve:browser": "ng serve -o",
-    "serve:electron": "npm-run-all -p ng:serve wait:electron",
-    "wait:electron": "wait-on http-get://localhost:4200/ && tsc main-electron.ts && electron ./ --serve",
-    "dist:electron": "tsc main-electron.ts && electron ./",
-    "prebuild:electron": "tsc main-electron.ts && ng build -c production",
+    "serve:electron": "npm-run-all -p ng:serve:electron wait:electron",
+    "wait:electron": "wait-on http-get://localhost:4200/ && tsc main-electron.ts && electron ./ --serve",    
     "build": "ng build",
+    "prebuild:electron": "tsc main-electron.ts && ng run ng-sqlite-cordotron-starter:build-electron:electron",
+    "dist:electron": "npm run prebuild:electron && electron ./",
     "build:windows": "npm run prebuild:electron && electron-builder build --windows",
+    "cordova:prepare": "tsc scripts/cordova-preparation.ts --typeRoots [] && node scripts/cordova-preparation.js",
+    "build:android": "ng build && npm run cordova:prepare && cordova build android --debug",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "asar:extract": "npx asar extract",
-    "cordova:prepare": "tsc scripts/cordova-preparation.ts --typeRoots [] && node scripts/cordova-preparation.js",
-    "build:android": "ng build && npm run cordova:prepare && cordova build android --debug"
+    "asar:extract": "npx asar extract"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +35,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^14.1.0",
     "@angular-devkit/build-angular": "^14.2.10",
     "@angular/cli": "~14.2.10",
     "@angular/compiler-cli": "^14.2.0",
