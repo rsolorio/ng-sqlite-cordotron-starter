@@ -2,26 +2,42 @@
 
 Boilerplate project that supports an Angular/Sqlite application running in Electron or Cordova.
 
-## Instructions
+## Technologies & Tools
+- NodeJs
+- Angular
+- Cordova
+- Android Studio
+- Gradle
+
+## Pre-Setup
+- Install [VS Code](https://code.visualstudio.com/download)
+- Install [Git for Windows](https://gitforwindows.org/)
 - Clone the repo
-- Install the global dependencies
-- Install the tools
+
+## Instructions
+- Install [NodeJs](https://nodejs.org/en) 18
+- Install global dependencies
+  - Install Angular CLI 14
+
+        npm install -g @angular/cli@14
+
+  - Install Cordova 11
+
+        npm install -g cordova@11
+
+- Install Android tools
+  - [Android Studio Flamingo 2022.2.1](https://developer.android.com/studio)
+    - Open SDK Manager and install the following:
+    - Android SDK 9.0 (Pie)
+    - Android SDK Build Tools 34 (show package details)
+      - 30.0.3
+  - Install [Graddle 7.6](https://gradle.org/releases/)
+    - Download the zip and extract the content under a `C:\Gradle` folder
 - Setup the environment variables
 - Do an npm install
-- If you are using cordova add the proper platform; before doing it create a www directory in the root of the project.
-
-## Technologies & Tools
-- Angular CLI 14
-- NodeJS 18
-- Android Studio Dolphin 2021.3.1 Patch 1
-  - Android SDK 9.0 (Pie)
-  - Android SDK Build Tools 30.0.3
-- Cordova 11
-- Gradle 7.6
-
-## Global Dependencies
-- @angular/cli@14
-- cordova@11
+- If you are using cordova add the proper platform
+  - Before doing it create a www directory in the root of the project.
+  - If you get the error `ps1 cannot be loaded because running scripts is disabled on this system` run the following powershell command as admin: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine`.
 
 ## Dev Dependencies
 - electron-reload
@@ -39,7 +55,7 @@ Boilerplate project that supports an Angular/Sqlite application running in Elect
     - Example: `ng run ng-sqlite-cordotron-starter:build-electron:electron`
 
 ## Environment Variables (Cordova)
-You need to setup these variables before running/building for cordova. You need to restart VS Code in order to get the new values.
+You need to setup these system variables before running/building for cordova. You need to restart VS Code in order to get the new values.
 - ANDROID_SDK_ROOT
   - C:\Users\rsolorio\AppData\Local\Android\Sdk
 - JAVA_HOME
@@ -64,13 +80,13 @@ You need to setup these variables before running/building for cordova. You need 
   - Builds the application with cordova supporting Android
 
 ## Cordova Commands
+- cordova platform add android
+  - Installs the cordova-android package and creates a platform android folder in the project
 - cordova run android
   - Creates the cordova build and launches the app in the emulator.
   - You need to have an emulator running.
 - cordova build android --debug
   - Creates the apk file in debug mode which allows to be installed without a proper certificate
-- cordova platform add android
-  - Installs the cordova-android package and creates a platform android folder in the project
 - cordova platform rm android
   - Un does the add command
   - Fixes an issue that starts happening after updating the config xml file: "No Java files found which extend CordovaActivity".
