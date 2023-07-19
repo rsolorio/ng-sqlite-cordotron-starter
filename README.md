@@ -33,6 +33,8 @@ Boilerplate project that supports an Angular/Sqlite application running in Elect
       - 30.0.3
   - Install [Graddle 7.6](https://gradle.org/releases/)
     - Download the zip and extract the content under a `C:\Gradle` folder
+  - Install JDK 8 (required to build the apk)
+    - Download from [here](https://www.oracle.com/mx/java/technologies/javase/javase8-archive-downloads.html)
 - Setup the environment variables
 - Do an npm install
 - If you are using cordova add the proper platform
@@ -60,6 +62,7 @@ You need to setup these system variables before running/building for cordova. Yo
   - C:\Users\rsolorio\AppData\Local\Android\Sdk
 - JAVA_HOME
   - C:\Program Files\Android\Android Studio\jre
+  - C:\Program Files\Java\jdk-1.8 (this one worked for me last time)
 - PATH
   - C:\Gradle\gradle-7.6\bin
 
