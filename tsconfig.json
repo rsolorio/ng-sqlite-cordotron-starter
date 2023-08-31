@@ -11,6 +11,8 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "strictPropertyInitialization": false,
+    "emitDecoratorMetadata": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

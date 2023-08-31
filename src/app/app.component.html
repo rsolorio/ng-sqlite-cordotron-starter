@@ -2,5 +2,6 @@
 <pre>{{featureInfoText}}</pre>
 <p>Environment: {{envName}}</p>
 <p>File Service supported? {{isFileServiceSupported}}</p>
+<p *ngFor="let entity of entities">{{entity.name}}</p>
 <img src="favicon.ico">
 <router-outlet></router-outlet>
